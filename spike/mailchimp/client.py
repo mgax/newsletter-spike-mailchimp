@@ -36,11 +36,3 @@ def create_campaign(client: Client, recipients=None):
         body["recipients"] = recipients
 
     return client.campaigns.create(body)
-
-
-def get_campaign(client, web_id):
-    for campaign in client.campaigns.list()["campaigns"]:
-        if campaign["web_id"] == web_id:
-            return campaign
-
-    raise KeyError("Campaign not found")
