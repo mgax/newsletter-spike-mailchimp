@@ -23,18 +23,19 @@ def log_api_errors(reraise=True):
             raise
 
 
-def create_campaign(client, recipients=[]):
-    return client.campaigns.create(
-        {
-            "type": "regular",
-            "settings": {
-                "from_name": "Newsletter Spike",
-                "reply_to": settings.MAILCHIMP_TEST_ADDRESS,
-                "subject_line": "The Spike Campaign",
-            },
-            "recipients": recipients,
-        }
-    )
+def create_campaign(client: Client, recipients=None):
+    body = {
+        "type": "regular",
+        "settings": {
+            "from_name": "Newsletter Spike",
+            "reply_to": settings.MAILCHIMP_TEST_ADDRESS,
+            "subject_line": "The Spike Campaign",
+        },
+    }
+    if recipients:
+        body["recipients"] = recipients
+
+    return client.campaigns.create(body)
 
 
 def get_campaign(client, web_id):
