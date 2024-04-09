@@ -10,7 +10,24 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
+import os
 from pathlib import Path
+
+from django.core.exceptions import ImproperlyConfigured
+
+
+_required = object()
+
+
+def getenv(name, default=_required):
+    value = os.environ.get(name, default)
+    if value is _required:
+        raise ImproperlyConfigured(f"Environment variable {name} is not set.")
+    return value
+
+
+def getenv_bool(name, default=_required):
+    return getenv(name, default).lower() in ["true", "on", "yes", "1"]
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,10 +37,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-u%x8&2$*pbt=)6(9(6l$!vy6c0r=k=rj^**ew37kl1@+8@%rik"
+SECRET_KEY = getenv("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = getenv_bool("DEBUG", "false")
 
 ALLOWED_HOSTS = []
 
