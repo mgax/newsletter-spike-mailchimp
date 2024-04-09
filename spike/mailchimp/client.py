@@ -23,7 +23,7 @@ def log_api_errors(reraise=True):
             raise
 
 
-def create_campaign(client):
+def create_campaign(client, recipients=[]):
     return client.campaigns.create(
         {
             "type": "regular",
@@ -32,6 +32,7 @@ def create_campaign(client):
                 "reply_to": settings.MAILCHIMP_TEST_ADDRESS,
                 "subject_line": "The Spike Campaign",
             },
+            "recipients": recipients,
         }
     )
 
