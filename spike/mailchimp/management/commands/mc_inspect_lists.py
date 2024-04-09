@@ -12,5 +12,11 @@ class Command(BaseCommand):
         client = get_client()
         with log_api_errors(reraise=False):
             for mail_list in client.lists.get_all_lists()["lists"]:
-                mail_list.pop("_links")
-                pprint(mail_list)
+                print("id:", mail_list["id"])
+                print("web_id:", mail_list["web_id"])
+                print("stats['member_count']:", mail_list["stats"]["member_count"])
+                print()
+
+                if options["verbosity"] > 1:
+                    mail_list.pop("_links")
+                    pprint(mail_list)
