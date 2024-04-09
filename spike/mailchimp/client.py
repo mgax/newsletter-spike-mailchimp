@@ -21,3 +21,24 @@ def log_api_errors(reraise=True):
         logger.exception("Mailchimp API error: %s", error.text)
         if reraise:
             raise
+
+
+def create_campaign(client):
+    return client.campaigns.create(
+        {
+            "type": "regular",
+            "settings": {
+                "from_name": "Newsletter Spike",
+                "reply_to": settings.MAILCHIMP_TEST_ADDRESS,
+                "subject_line": "The Spike Campaign",
+            },
+        }
+    )
+
+
+def get_campaign(client, web_id):
+    for campaign in client.campaigns.list()["campaigns"]:
+        if campaign["web_id"] == web_id:
+            return campaign
+
+    raise KeyError("Campaign not found")

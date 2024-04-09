@@ -2,15 +2,7 @@ from pprint import pprint
 
 from django.core.management.base import BaseCommand
 
-from ...client import get_client, log_api_errors
-
-
-def get_campaign(client, web_id):
-    for campaign in client.campaigns.list()["campaigns"]:
-        if campaign["web_id"] == web_id:
-            return campaign
-
-    raise KeyError("Campaign not found")
+from ...client import get_campaign, get_client, log_api_errors
 
 
 class Command(BaseCommand):

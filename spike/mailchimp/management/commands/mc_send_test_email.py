@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand
 
-from ...client import get_client, log_api_errors
+from ...client import create_campaign, get_client, log_api_errors
 
 
 class Command(BaseCommand):
@@ -13,16 +13,7 @@ class Command(BaseCommand):
         email = options["email"]
         client = get_client()
         with log_api_errors(reraise=False):
-            campaign_id = client.campaigns.create(
-                {
-                    "type": "regular",
-                    "settings": {
-                        "from_name": "Newsletter Spike",
-                        "reply_to": email,
-                        "subject_line": "The Spike Campaign",
-                    },
-                }
-            )["id"]
+            campaign_id = create_campaign(client)["id"]
             try:
                 client.campaigns.send_test_email(
                     campaign_id, {"test_emails": [email], "send_type": "html"}
