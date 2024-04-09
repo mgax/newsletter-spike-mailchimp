@@ -1,0 +1,10 @@
+[project]
+name = "newsletter-spike-mailchimp"
+version = "0.0.1"
+dependencies = [
+    "Django>=4.2,<5",
+    "mailchimp-marketing",
+]
+
+[tool.ruff]
+line-length = 88
