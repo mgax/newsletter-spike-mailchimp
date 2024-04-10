@@ -17,6 +17,16 @@ class Command(BaseCommand):
                 print("stats['member_count']:", mail_list["stats"]["member_count"])
                 print()
 
-                if options["verbosity"] > 1:
+                if options["verbosity"] >= 2:
+                    segments = client.lists.list_segments(mail_list["id"])["segments"]
+                    if segments:
+                        print("## segments")
+                        for segment in segments:
+                            segment.pop("_links")
+                            pprint(segment)
+                        print()
+
+                if options["verbosity"] >= 3:
                     mail_list.pop("_links")
                     pprint(mail_list)
+                    print()

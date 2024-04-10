@@ -20,12 +20,19 @@ class Command(BaseCommand):
                 print()
 
                 if options["verbosity"] >= 2:
+                    print("## report")
                     report = client.reports.get_campaign_report(campaign["id"])
                     report.pop("_links")
                     pprint(report)
+                    print()
 
                 if options["verbosity"] >= 3:
+                    print("## details")
                     campaign.pop("_links")
                     pprint(campaign)
+                    print()
+
+                    print("## html")
                     content = client.campaigns.get_content(campaign["id"])
-                    print(content["html"])
+                    print(content.get("html"))
+                    print()
