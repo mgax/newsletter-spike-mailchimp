@@ -19,7 +19,12 @@ class Command(BaseCommand):
                 print("send_time:", campaign["send_time"])
                 print()
 
-                if options["verbosity"] > 1:
+                if options["verbosity"] >= 2:
+                    report = client.reports.get_campaign_report(campaign["id"])
+                    report.pop("_links")
+                    pprint(report)
+
+                if options["verbosity"] >= 3:
                     campaign.pop("_links")
                     pprint(campaign)
                     content = client.campaigns.get_content(campaign["id"])
