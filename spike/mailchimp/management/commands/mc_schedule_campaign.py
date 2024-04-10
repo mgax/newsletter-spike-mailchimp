@@ -9,14 +9,14 @@ class Command(BaseCommand):
 
     def add_arguments(self, parser):
         parser.add_argument("campaign_id")
-        parser.add_argument("seconds", type=int)
 
     def handle(self, *args, **options):
         client = get_client()
-        time = datetime.now(UTC).replace(microsecond=0) + timedelta(
-            seconds=options["seconds"]
-        )
+        time = datetime.now(UTC).replace(minute=0, second=0, microsecond=0)
+        while time < datetime.now(UTC):
+            time += timedelta(minutes=15)
         with log_api_errors(reraise=False):
+            print(time)
             client.campaigns.schedule(
                 options["campaign_id"], {"schedule_time": time.isoformat()}
             )
