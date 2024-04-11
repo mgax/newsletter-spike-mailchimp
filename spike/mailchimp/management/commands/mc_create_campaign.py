@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand
 
-from spike.content.mjml_rendering import render
+from spike.content.mjml_rendering import get_rich_text, render
 from ...client import create_campaign, get_client, log_api_errors
 
 
@@ -13,7 +13,8 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         list_id = options["list_id"]
         client = get_client()
+        html = render(str(get_rich_text()))
         with log_api_errors(reraise=False):
             campaign = create_campaign(client, recipients={"list_id": list_id})
-            client.campaigns.set_content(campaign["id"], {"html": render()})
+            client.campaigns.set_content(campaign["id"], {"html": html})
             print(campaign["id"])
