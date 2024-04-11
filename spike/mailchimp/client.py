@@ -30,6 +30,7 @@ def create_campaign(client: Client, recipients=None):
             "from_name": "Newsletter Spike",
             "reply_to": settings.MAILCHIMP_TEST_ADDRESS,
             "subject_line": "The Spike Campaign",
+            "auto_footer": False,
         },
     }
     if recipients:
