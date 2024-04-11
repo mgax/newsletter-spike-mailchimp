@@ -5,6 +5,7 @@ dependencies = [
     "Django>=4.2,<5",
     "mailchimp-marketing",
     "mjml-python",
+    "wagtail",
 ]
 
 [tool.ruff]

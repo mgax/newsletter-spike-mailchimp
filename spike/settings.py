@@ -29,6 +29,7 @@ def getenv(name, default=_required):
 def getenv_bool(name, default=_required):
     return getenv(name, default).lower() in ["true", "on", "yes", "1"]
 
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -54,6 +55,15 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "wagtail.embeds",
+    "wagtail.sites",
+    "wagtail.users",
+    "wagtail.documents",
+    "wagtail.images",
+    "wagtail.admin",
+    "wagtail",
+    "modelcluster",
+    "taggit",
     "spike.content",
     "spike.mailchimp",
 ]
@@ -144,3 +154,9 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 MAILCHIMP_API_KEY = getenv("MAILCHIMP_API_KEY")
 
 MAILCHIMP_TEST_ADDRESS = getenv("MAILCHIMP_TEST_ADDRESS")
+
+WAGTAIL_SITE_NAME = "Spike"
+WAGTAILADMIN_BASE_URL = "http://localhost:8000/admin"
+
+MEDIA_ROOT = BASE_DIR / "media"
+MEDIA_URL = "/media/"
