@@ -13,7 +13,7 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         list_id = options["list_id"]
         client = get_client()
-        html = render(str(get_rich_text()))
+        html = render(get_rich_text())
         with log_api_errors(reraise=False):
             campaign = create_campaign(client, recipients={"list_id": list_id})
             client.campaigns.set_content(campaign["id"], {"html": html})

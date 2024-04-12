@@ -12,4 +12,4 @@ class Command(BaseCommand):
         print(rich_text)
         print()
         print("## Email text")
-        print(render(str(rich_text)))
+        print(render(rich_text))

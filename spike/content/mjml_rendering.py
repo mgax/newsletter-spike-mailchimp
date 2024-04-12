@@ -5,7 +5,7 @@ from wagtail.images.models import Image
 from wagtail.rich_text import RichText
 
 
-def render(rich_text=""):
+def render(rich_text=RichText("")):
     return mjml2html(
         dedent(
             f"""
