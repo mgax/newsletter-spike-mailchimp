@@ -1,4 +1,4 @@
 *.pyc
 *.egg-info
 /db.sqlite3
-/media
+/.media

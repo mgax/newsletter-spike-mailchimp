@@ -18,6 +18,10 @@ class Command(BaseCommand):
                 print()
 
                 if options["verbosity"] >= 2:
+                    mail_list.pop("_links")
+                    pprint(mail_list)
+                    print()
+
                     segments = client.lists.list_segments(mail_list["id"])["segments"]
                     if segments:
                         print("## segments")

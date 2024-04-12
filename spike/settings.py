@@ -158,5 +158,5 @@ MAILCHIMP_TEST_ADDRESS = getenv("MAILCHIMP_TEST_ADDRESS")
 WAGTAIL_SITE_NAME = "Spike"
 WAGTAILADMIN_BASE_URL = "http://localhost:8000/admin"
 
-MEDIA_ROOT = BASE_DIR / "media"
+MEDIA_ROOT = BASE_DIR / ".media"
 MEDIA_URL = "/media/"
