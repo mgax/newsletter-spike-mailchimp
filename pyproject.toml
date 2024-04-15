@@ -2,11 +2,16 @@
 name = "newsletter-spike-mailchimp"
 version = "0.0.1"
 dependencies = [
-    "Django>=4.2,<5",
+    "Django>=4.2,<4.3",
     "mailchimp-marketing",
     "mjml-python",
     "queryish",
-    "wagtail",
+    "wagtail>=5.2,<5.3",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pip-tools",
 ]
 
 [tool.ruff]
