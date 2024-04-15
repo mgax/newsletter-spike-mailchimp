@@ -160,3 +160,12 @@ WAGTAILADMIN_BASE_URL = "http://localhost:8000/admin"
 
 MEDIA_ROOT = BASE_DIR / ".media"
 MEDIA_URL = "/media/"
+
+CACHES = {
+    "default": {
+        "BACKEND": "django.core.cache.backends.filebased.FileBasedCache",
+        "LOCATION": BASE_DIR / ".django_cache",
+    }
+}
+
+NEWSLETTER_CACHE_TIMEOUT = 300
