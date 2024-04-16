@@ -48,33 +48,12 @@ def render(rich_text=RichText("")):
                   <mj-column>
                     <mj-text>
                         --- begin custom footer ---
-
-                        <p>*|LIST:DESCRIPTION|* <br />
-
-                        <br />
-
-                        <a href="*|UNSUB|*">Unsubscribe</a> *|EMAIL|* from this list.<br />
-
-                        <br />
-
+                        <a href="*|UNSUB|*">Unsubscribe</a>
                         Our mailing address is:<br />
 
                         *|HTML:LIST_ADDRESS_HTML|*<br />
 
-                        <br />
-
-                        Copyright (C) *|CURRENT_YEAR|* *|LIST:COMPANY|* All rights reserved.<br />
-
-                        <br />
-
-                        <a href="*|FORWARD|*">Forward</a> this email to a friend<br />
-
-                        <a href="*|UPDATE_PROFILE|*">Update your preferences</a><br />
-
-                        <br />
-
-                        *|IF:REWARDS|* *|HTML:REWARDS|* *|END:IF|*</p>
-
+                        *|IF:REWARDS|* *|HTML:REWARDS|* *|END:IF|*
                         --- end custom footer ---
                     </mj-text>
                   </mj-column>
