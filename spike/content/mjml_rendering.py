@@ -1,12 +1,12 @@
 from textwrap import dedent
 
-from mjml import mjml2html
+import mrml
 from wagtail.images.models import Image
 from wagtail.rich_text import RichText
 
 
 def render(rich_text=RichText("")):
-    return mjml2html(
+    return mrml.to_html(
         dedent(
             f"""
             <mjml>

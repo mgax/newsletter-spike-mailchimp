@@ -4,7 +4,7 @@ version = "0.0.1"
 dependencies = [
     "Django>=4.2,<4.3",
     "mailchimp-marketing",
-    "mjml-python",
+    "mrml",
     "queryish",
     "wagtail>=5.2,<5.3",
 ]
