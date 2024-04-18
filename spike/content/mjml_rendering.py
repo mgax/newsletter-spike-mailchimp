@@ -1,8 +1,51 @@
+from copy import copy
+from functools import lru_cache
 from textwrap import dedent
 
 import mrml
+from django.utils.html import escape
 from wagtail.images.models import Image
-from wagtail.rich_text import RichText
+from wagtail.models import Page
+from wagtail.rich_text import EmbedRewriter, LinkRewriter, MultiRuleRewriter, RichText, features
+from wagtail.rich_text.pages import PageLinkHandler
+
+
+class LinkHandlerForEmail(PageLinkHandler):
+    @classmethod
+    def expand_db_attributes(cls, attrs):
+        try:
+            page = cls.get_instance(attrs)
+            return '<a href="%s">' % escape(page.localized.specific.full_url)
+        except Page.DoesNotExist:
+            return "<a>"
+
+
+@lru_cache(maxsize=None)
+def get_rewriter_for_email():
+    embed_rules = copy(features.get_embed_types())
+    link_rules = copy(features.get_link_types())
+    link_rules["page"] = LinkHandlerForEmail
+    return MultiRuleRewriter(
+        [
+            LinkRewriter(
+                {
+                    linktype: handler.expand_db_attributes
+                    for linktype, handler in link_rules.items()
+                },
+            ),
+            EmbedRewriter(
+                {
+                    embedtype: handler.expand_db_attributes
+                    for embedtype, handler in embed_rules.items()
+                },
+            ),
+        ]
+    )
+
+
+def rewrite_db_html_for_email(rich_text):
+    rewriter = get_rewriter_for_email()
+    return rewriter(rich_text.source)
 
 
 def render(rich_text=RichText("")):
@@ -39,7 +82,7 @@ def render(rich_text=RichText("")):
                 <mj-section>
                   <mj-column>
                     <mj-text>
-                      {rich_text}
+                      {rewrite_db_html_for_email(rich_text)}
                     </mj-text>
                   </mj-column>
                 </mj-section>
