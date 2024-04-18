@@ -1,6 +1,6 @@
 from django.db.models import CharField
 from django.http import HttpResponse
-from wagtail.admin.panels import FieldPanel, ObjectList, TabbedInterface
+from wagtail.admin.panels import FieldPanel, HelpPanel, ObjectList, TabbedInterface
 from wagtail.fields import RichTextField
 from wagtail.models import Page
 from wagtail.rich_text import RichText
@@ -53,6 +53,9 @@ class StandardPage(Page):
             widget=audience_segment_chooser_viewset.widget_class(  # type: ignore
                 linked_fields={"audience": "#id_newsletter_audience"},
             ),
+        ),
+        HelpPanel(
+            content="Hello World",
         ),
     ]
 
