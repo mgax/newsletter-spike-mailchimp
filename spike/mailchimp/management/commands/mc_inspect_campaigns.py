@@ -6,7 +6,7 @@ from ...client import get_client, log_api_errors
 
 
 class Command(BaseCommand):
-    help = "Inspect a campaign"
+    help = "Inspect campaigns"
 
     def handle(self, *args, **options):
         client = get_client()
