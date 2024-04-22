@@ -58,6 +58,7 @@ INSTALLED_APPS = [
     "wagtail.embeds",
     "wagtail.sites",
     "wagtail.users",
+    "wagtail.snippets",
     "wagtail.documents",
     "wagtail.images",
     "wagtail.admin",
@@ -169,3 +170,26 @@ CACHES = {
 }
 
 NEWSLETTER_CACHE_TIMEOUT = 300
+
+RICH_TEXT_FEATURES = [
+    "bold",
+    "italic",
+    "code",
+    "superscript",
+    "subscript",
+    "strikethrough",
+    "h1",
+    "h2",
+    "h3",
+    "h4",
+    "h5",
+    "h6",
+    "ol",
+    "ul",
+    "blockquote",
+    "link",
+    "document-link",
+    "image",
+    "embed",
+    "hr",
+]

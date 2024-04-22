@@ -1,0 +1,24 @@
+{% load wagtail_newsletter %}
+
+<mjml>
+  <mj-body>
+    <mj-section>
+      <mj-column>
+        <mj-text>
+          {{ page.body|newsletter_richtext }}
+        </mj-text>
+      </mj-column>
+    </mj-section>
+
+    <mj-section>
+      <mj-column>
+        <mj-text>
+          <a href="*|UNSUB|*">Unsubscribe</a><br />
+          Our mailing address is:<br />
+          *|HTML:LIST_ADDRESS_HTML|*<br />
+          *|IF:REWARDS|* *|HTML:REWARDS|* *|END:IF|*
+        </mj-text>
+      </mj-column>
+    </mj-section>
+  </mj-body>
+</mjml>

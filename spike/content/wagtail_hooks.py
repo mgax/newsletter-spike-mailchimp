@@ -1,6 +1,10 @@
 from wagtail import hooks
+from wagtail.snippets.models import register_snippet
 
 from . import viewsets
+from .models import NewsletterAudience
+
+register_snippet(NewsletterAudience)
 
 
 @hooks.register("register_admin_viewset")  # type: ignore
