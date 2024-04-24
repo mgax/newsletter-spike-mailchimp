@@ -21,6 +21,7 @@ defusedxml==0.7.1
 django==4.2.11
     # via
     #   django-filter
+    #   django-mjml
     #   django-modelcluster
     #   django-permissionedforms
     #   django-taggit
@@ -30,6 +31,8 @@ django==4.2.11
     #   wagtail
 django-filter==23.5
     # via wagtail
+django-mjml==1.2
+    # via newsletter-spike-mailchimp (pyproject.toml)
 django-modelcluster==6.3
     # via wagtail
 django-permissionedforms==0.1

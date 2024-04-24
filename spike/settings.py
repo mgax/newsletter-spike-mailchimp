@@ -65,6 +65,7 @@ INSTALLED_APPS = [
     "wagtail",
     "modelcluster",
     "taggit",
+    "mjml",
     "spike.content",
     "spike.mailchimp",
 ]
@@ -193,3 +194,6 @@ RICH_TEXT_FEATURES = [
     "embed",
     "hr",
 ]
+
+MJML_BACKEND_MODE = 'cmd'
+MJML_EXEC_CMD = str(BASE_DIR / "node_modules/.bin/mjml")
