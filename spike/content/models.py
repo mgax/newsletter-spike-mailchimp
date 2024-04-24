@@ -102,6 +102,7 @@ class NewsletterPageMixin(Page):
 
 class StandardPage(NewsletterPageMixin, Page):  # type: ignore
     newsletter_template = "spike/mrml.html"
+    # newsletter_template = "spike/django-mjml.html"
 
     body = RichTextField(features=settings.RICH_TEXT_FEATURES)
 
