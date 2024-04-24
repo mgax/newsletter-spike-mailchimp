@@ -91,6 +91,16 @@ class NewsletterPageMixin(Page):
 
         return super().serve_preview(request, mode_name)  # type: ignore
 
+    def with_content_json(self, content):
+        obj = super().with_content_json(content)
+        obj.newsletter_audience_id = self.newsletter_audience_id
+        return obj
+
+    def save_revision(self, *args, **kwargs):
+        revision = super().save_revision(*args, **kwargs)
+        self.save(update_fields=["newsletter_audience_id"], clean=False)
+        return revision
+
 
 class StandardPage(NewsletterPageMixin, Page):  # type: ignore
     newsletter_template = "spike/content.mjml"
