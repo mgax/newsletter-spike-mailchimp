@@ -81,9 +81,7 @@ class NewsletterPageMixin(Page):
     newsletter_template: str
 
     def render_newsletter(self):
-        return mrml.to_html(  # type: ignore
-            render_to_string(self.newsletter_template, {"page": self})
-        )
+        return render_to_string(self.newsletter_template, {"page": self})
 
     def serve_preview(self, request, mode_name):  # type: ignore
         if mode_name == "newsletter":
@@ -103,7 +101,7 @@ class NewsletterPageMixin(Page):
 
 
 class StandardPage(NewsletterPageMixin, Page):  # type: ignore
-    newsletter_template = "spike/content.mjml"
+    newsletter_template = "spike/mrml.html"
 
     body = RichTextField(features=settings.RICH_TEXT_FEATURES)
 
